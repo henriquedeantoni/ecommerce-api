@@ -58,5 +58,12 @@ app.use((req, res, next)=>{
 app.use((err, req, res, next)=>{
     
     err.status(err.status || 500);
-    if(err.status !== 404) console.warn();
+    if(err.status !== 404) console.warn("Error: ", err.message, new Date());
+    res.json({errors:{message: err.message, status: err.status}});
 });
+
+//LISTEN
+app.listen(PORT, (err)=>{
+    if(err) throw err;
+    console.log(`Rodando n //localhost:${PORT}`);
+})
