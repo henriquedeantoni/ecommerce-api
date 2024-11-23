@@ -1,20 +1,15 @@
 const router = require("express").router();
+const lojaValidation = require("../../../Controller/validacoes/lojaValidator");
 const auth = require("../../auth");
 const LojaController = require("../../../controllers/LojaController");
 
 const lojaController = new LojaController();
-router.post("/login", usuarioController.login);
-router.post("/registrar", usuarioController.store);
-router.put("/", auth.required ,usuarioController.update);
-router.delete("/", auth.required, usuariosController.remove);
 
-router.get("/recuperar-senha", usuariosController.showRecovery);
-router.post("/recuperar-senha", usuariosController.createRecovery);
-router.get("/senha-recuperada", usuarioController.showCompleteRecovery);
-router.post("/senha-recuperada", usuarioController.completeRecovery);
+router.get("/", lojaController.index);
+router.get("/:id", lojaController.show);
 
-router.get("/", auth.required, UsuarioController.index);
-router.get("/:id", auth.required, usuarioController.show);
-
+router.post("/", auth.required, lojaController.store);
+router.put("/:id", auth.required, lojaValidation,  lojaController.update);
+router.delete("/:id", auth.required, lojaValidation, lojaController.remove);
 
 module.exports = router;
