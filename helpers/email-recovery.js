@@ -34,11 +34,11 @@ module.export = ({usuario, recovery}, cb ) => {
                 console.log(error);
                 return cb("Aconteceu um erro no envio do email, tente novamente.");
             }else{
-                return cb(null, "Linkpara redefinicao de senha enviado com sucesso para seu email");
+                return cb(null, "Link para redefinição de senha enviado com sucesso para seu email");
             }
         } )
     } else {
         console.log(opcoesEmail);
-        return cb(null, "Link para redefinicao de senha enviado com sucesso para seu email.");
+        return cb(null, "Link para redefinição de senha enviado com sucesso para seu email.");
     }
 };
