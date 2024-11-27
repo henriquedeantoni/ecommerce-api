@@ -73,8 +73,6 @@ class UsuarioController{
 
     login(req, res, next){
         const {email, password} = req.body;
-        if(!email) return res.status(422).json({errors:{email:"Não pode ficar vazio"}});
-        if(!password) return res.status(422).json({errors:{password:"Não pode ficar vazio"}});
         Usuario.findOne({email}).then((usuario) =>{
             if(!usuario) return res.status(401).json({errors:{password:"Usuário não registrado"}});
             if(!usuario.validarSenha(password)) return res.status(401).json({errors:"senha invalida"});
