@@ -2,8 +2,12 @@ const router = require("express").router();
 const auth = require("../../auth");
 const UsuarioController = require("../../../controllers/UsuarioController");
 
+const Validation =  require("express-validation");
+const {usuarioValidation} = require("../../../controllers/validacoes/usuarioValidation");
+
+
 const usuarioController = new UsuarioController();
-router.post("/login", usuarioController.login);
+router.post("/login", Validation(usuarioValidation.login), usuarioController.login);
 router.post("/registrar", usuarioController.store);
 router.put("/", auth.required ,usuarioController.update);
 router.delete("/", auth.required, usuariosController.remove);
