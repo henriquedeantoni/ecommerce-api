@@ -20,16 +20,7 @@ class LojaController {
 
     //POST /
     store(req, res, next){
-        const{nome, cnpj, email, telefones, endereco} = req.body
-
-        const error = [];
-        if(!nome) error.push("nome");
-        if(!cnpj) error.push("cnpj");
-        if(!email) error.push("email");
-        if(!telefones) error.push("telefones");
-        if(!endereco) error.push("endereco");
-        if(error.length>0) return res.status(422).json({error: "required", payload: error});
-
+        const{nome, cnpj, email, telefones, endereco} = req.body;
         const loja = new Loja({nome, cnpj, email, telefones, endereco});
         loja.save().then(()=> res.send({loja})).catch(next);
     }
@@ -38,7 +29,7 @@ class LojaController {
     update(req, res, next){
         const{nome, cnpj, email, telefones, endereco} = req.body
 
-        Loja.findById(req.params.id).then(loja=>{
+        Loja.findById(req.query.id).then(loja=>{
             if(!loja) return res.status(422).send({error: "Loja não existe."});
 
             if(nome) loja.nome = nome;
