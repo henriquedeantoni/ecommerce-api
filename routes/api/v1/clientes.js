@@ -23,4 +23,6 @@ router.post("/", auth.required, clienteController.store);
 router.put("/:id", auth.required, clienteController.update);
 router.delete("/:id", auth.required, clienteController.remove);
 
+
+
 module.exports = router;
